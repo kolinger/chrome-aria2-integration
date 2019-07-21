@@ -49,7 +49,12 @@ var ARIA2 = (function () {
 	return function (jsonrpc_path) {
 		this.jsonrpc_path = jsonrpc_path;
 		this.addUri = function (uri, options) {
+			if (!(/^https?:\/\//.test(uri))) {
+				showError('Invalid URL: ' + uri);
+				return false;
+			}
 			request(this.jsonrpc_path, 'aria2.addUri', [[uri], options]);
+			return true;
 		};
 		return this;
 	};
@@ -67,6 +72,20 @@ function showNotification() {
 	chrome.notifications.create("senttoaria2", notfopt);
 	window.setTimeout(function () {
 		chrome.notifications.clear("senttoaria2");
+	}, 3000);
+}
+
+function showError(message) {
+	"use strict";
+	var notfopt = {
+		type: "basic",
+		title: "Aria2 Integration",
+		iconUrl: "icons/notificationicon.png",
+		message: 'ERROR: ' + message
+	};
+	chrome.notifications.create("error", notfopt);
+	window.setTimeout(function () {
+		chrome.notifications.clear("error");
 	}, 3000);
 }
 
@@ -88,8 +107,9 @@ chrome.contextMenus.onClicked.addListener(function (info, tab) {
 				var params = {};
 				params.referer = tabs[0].url;
 				params.header = "Cookie:" + cookies;
-				aria2.addUri(info.linkUrl, params);
-				showNotification();
+				if (aria2.addUri(info.linkUrl, params)) {
+					showNotification();
+				}
 			});
 		});
 	}
@@ -176,10 +196,10 @@ function captureAdd(item, taburl) {
 				if (url === 'about:blank') {
 					url = item.finalUrl;
 				}
-				aria2.addUri(url, params);
+				if (aria2.addUri(url, params)) {
+					showNotification();
+				}
 			});
-
-			showNotification();
 		});
 	}
 }
