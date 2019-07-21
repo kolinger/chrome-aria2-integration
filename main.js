@@ -204,7 +204,7 @@ function captureAdd(item, taburl) {
 	}
 }
 
-chrome.downloads.onDeterminingFilename.addListener(function (Item, s) {
+chrome.downloads.onCreated.addListener(function (Item) {
 	"use strict";
 	if (settings.get('captureCheckbox')) {
 		chrome.tabs.query({'active': true, 'currentWindow': true}, function (tabs) {
