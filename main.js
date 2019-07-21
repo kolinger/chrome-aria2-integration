@@ -116,6 +116,7 @@ function convertListToRegex(list) {
 		list = list.trim();
 		list = list.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 		list = list.replace(/[,\n]/g, '|');
+		list = list.replace(/\|{2,}/g, '|');
 		list = list.replace(/\s+/g, '');
 		list = list.replace(/\\\*/g, '[^ ]*');
 		regex = new RegExp(list, 'gi');
