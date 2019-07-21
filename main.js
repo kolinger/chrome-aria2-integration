@@ -90,13 +90,15 @@ function showError(message) {
 }
 
 // context menu module
-chrome.contextMenus.create(
-	{
-		title: 'Download with aria2',
-		id: "linkclick",
-		contexts: ['link']
-	}
-);
+chrome.contextMenus.removeAll(function() {
+	chrome.contextMenus.create(
+		{
+			title: 'Download with aria2',
+			id: "linkclick",
+			contexts: ['link']
+		}
+	);
+});
 
 chrome.contextMenus.onClicked.addListener(function (info, tab) {
 	"use strict";
