@@ -1,46 +1,49 @@
 {
-  "name": "Aria2c Integration",
-  "version": "2.0.0",
-  "manifest_version": 2,
-  "minimum_chrome_version": "54",
-  "description": "Download files with aria2",
-  "icons": {
-    "16": "icons/icon16.png",
-    "48": "icons/icon48.png",
-    "128": "icons/icon128.png"
-  },
-  "default_locale": "en",
-  "background": {
-    "scripts": [ "lib/store.js", "main.js" ],
-    "persistent": false
-  },
-  "options_page": "settings.html",
-  "permissions": [
-    "contextMenus",
-    "activeTab",
-    "tabs",
-    "downloads",
-    "notifications",
-    "storage",
-    "cookies",
-    "*://*/"
-  ],
-  "browser_action": {
-   "default_icon": {
-    "19": "icons/icon19.png"
-  },
-   "default_popup": "popup.html"
- },
-  "content_scripts": [
-    {
-      "matches": [
-        "http://*/*",
-	"https://*/*"
-      ],
-      "js": [
-        "inject.js"
-      ]
-    }
-  ],
-"content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+	"name": "Aria2c Integration",
+	"version": "2.0.0",
+	"manifest_version": 2,
+	"minimum_chrome_version": "54",
+	"description": "Download files with aria2",
+	"icons": {
+		"16": "icons/icon16.png",
+		"48": "icons/icon48.png",
+		"128": "icons/icon128.png"
+	},
+	"default_locale": "en",
+	"background": {
+		"scripts": [
+			"lib/store.js",
+			"main.js"
+		],
+		"persistent": false
+	},
+	"options_page": "settings.html",
+	"permissions": [
+		"contextMenus",
+		"activeTab",
+		"tabs",
+		"downloads",
+		"notifications",
+		"storage",
+		"cookies",
+		"*://*/"
+	],
+	"browser_action": {
+		"default_icon": {
+			"19": "icons/icon19.png"
+		},
+		"default_popup": "popup.html"
+	},
+	"content_scripts": [
+		{
+			"matches": [
+				"http://*/*",
+				"https://*/*"
+			],
+			"js": [
+				"inject.js"
+			]
+		}
+	],
+	"content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
 }
