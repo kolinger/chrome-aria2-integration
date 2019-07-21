@@ -1,22 +1,12 @@
 /*popup*/
-#purgebtn, #addbtn {
-    margin: auto auto auto 5px;
-    border: 1px solid #CCC;
-    border-radius: 3px;
-    background-color: white;
-    padding: 2px;
-    float: right;
-    font-weight: bold;
-}
-
 #globalstat {
-	display:inline-block;
+	display: inline-block;
 }
 
 #taskaddbox {
-    width: 70%;
-    margin-bottom: 15px;
-    display: inline-block;
+	width: 70%;
+	margin-bottom: 15px;
+	display: inline-block;
 }
 
 #taskaddbatch {
@@ -26,36 +16,36 @@
 	float: left;
 }
 
-#addmore{
-    margin: auto auto auto 5px;
-    font-size: 0.8em;
-    border: 1px solid #CCC;
-    border-radius: 3px;
-    background-color: white;
-    padding: 3px;
+#addmore {
+	margin: auto auto auto 5px;
+	font-size: 0.8em;
+	border: 1px solid #CCC;
+	border-radius: 3px;
+	background-color: white;
+	padding: 3px;
 }
 
 #addsubmit {
-    margin: auto auto auto 5px;
-    font-size: 0.8em;
-    border: 1px solid #CCC;
-    border-radius: 3px;
-    background-color: #6C788E;
-    color: white;
-    padding: 3px;
+	margin: auto auto auto 5px;
+	font-size: 0.8em;
+	border: 1px solid #CCC;
+	border-radius: 3px;
+	background-color: #6C788E;
+	color: white;
+	padding: 3px;
 }
 
 div[id^="taskInfo_"] {
-    font-size: 13px;
-    max-width: 330px;
+	font-size: 13px;
+	max-width: 330px;
 }
 
 .progbar {
 	height: 20px;
 	margin-top: 2px;
-    margin-bottom: 10px;
-    transition: width 1s;
-    max-width: 350px;
+	margin-bottom: 10px;
+	transition: width 1s;
+	max-width: 350px;
 }
 
 .active, .waiting {
@@ -78,27 +68,49 @@ div[id^="taskInfo_"] {
 	background-color: #ECECEC;
 }
 
-.tasktitle{
+.tasktitle {
 	font-size: 15px !important;
 	font-weight: bold;
 	word-break: break-all !important;
 }
 
 .removebtn {
-    margin: auto auto auto 5px;
-    font-size: 0.6em;
-    border: 1px solid #CCC;
-    border-radius: 3px;
-    background-color: white;
-    padding: 1px;
+	margin: auto auto auto 5px;
+	font-size: 0.6em;
+	border: 1px solid #CCC;
+	border-radius: 3px;
+	background-color: white;
+	padding: 1px;
 }
 
 
-.complete_info2{
+.complete_info2 {
 	display: none;
 }
 
 body {
-	min-width:357px;
-	overflow-x:hidden;
+	min-width: 357px;
+	overflow-x: hidden;
+}
+
+.separator {
+	margin: 5px 0;
+	border-bottom: 1px solid #999;
+}
+
+.top .right {
+	float: right;
+}
+
+.top .capture {
+	display: inline-block;
+}
+
+.top .button {
+	padding: 2px;
+	margin: 0 0 0 5px;
+	background-color: white;
+	border: 1px solid #CCC;
+	border-radius: 3px;
+	font-weight: bold;
 }

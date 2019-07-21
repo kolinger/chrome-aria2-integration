@@ -10,13 +10,6 @@ var settings = new Store('settings', {
 	"sizecaptureCheckbox": true
 });
 
-chrome.storage.local.set({"rpcpath": settings.get('rpcpath')});
-chrome.storage.local.set({"rpcuser": settings.get('rpcuser')});
-chrome.storage.local.set({"rpctoken": settings.get('rpctoken')});
-
-//Binux
-//https://github.com/binux
-
 var ARIA2 = (function () {
 	"use strict";
 
@@ -59,7 +52,6 @@ var ARIA2 = (function () {
 		return this;
 	};
 }());
-
 
 function showNotification() {
 	"use strict";
