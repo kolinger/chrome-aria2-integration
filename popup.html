@@ -9,7 +9,7 @@
 		<div class="top">
 			<div id="globalstat" style="margin-top:2px"></div>
 			<div class="right">
-				<div id="capture-placeholder" class="capture"></div>
+				<input type="button" id="capture" class="button" value="Capture:" />
 				<input type="button" id="addbtn" class="button" value="Add" />
 				<input type="button" id="purgebtn" class="button" value="Purge!" />
 			</div>
@@ -32,9 +32,6 @@
 
 		<script id="headInfo" type="x-tmpl-mustache">
 			{{> globspeed}}
-		</script>
-		<script id="capture-template" type="x-tmpl-mustache">
-			<input type="button" id="capture" class="button" value="Capture: {{> state}}" />
 		</script>
 		<script id="taskInfo" type="x-tmpl-mustache">
 			<div id=taskInfo_{{gid}}>
