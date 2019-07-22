@@ -82,7 +82,7 @@ function showError(message) {
 }
 
 // context menu module
-chrome.contextMenus.removeAll(function() {
+chrome.contextMenus.removeAll(function () {
 	chrome.contextMenus.create(
 		{
 			title: 'Download with aria2',
@@ -138,45 +138,50 @@ function convertListToRegex(list) {
 	return regex;
 }
 
-function isCapture(size, taburl, url, name) {
+function validate(size, taburl, url, name) {
 	"use strict";
-	var bsites = settings.get('blacklistsite'), wsites = settings.get('whitelistsite');
-	var re_bsites = convertListToRegex(bsites), re_wsites = convertListToRegex(wsites);
 
-	var ftypes = settings.get('whitelisttype').toLowerCase();
-	var Intype = ftypes.indexOf(name.split('.').pop().toLowerCase());
-
-	var thsize = settings.get('filesizesetting');
-	var thsizeprec = ['K', 'M', 'G', 'T'];
-	var thsizebytes = thsize.match(/[\d.]+/)[0] * Math.pow(1024, thsizeprec.indexOf(thsize.match(/[a-zA-Z]+/)[0].toUpperCase()) + 1);
-
-	var res;
-	switch (true) {
-		case url.substring(0, 5) === 'blob:':
-			res = 0;
-			break;
-		case re_bsites.test(taburl):
-			res = 0;
-			break;
-		case re_wsites.test(taburl):
-			res = 1;
-			break;
-		case (Intype !== -1):
-			res = 1;
-			break;
-		case (size >= thsizebytes && settings.get('sizecaptureCheckbox')):
-			res = 1;
-			break;
-		default:
-			res = 0;
+	if (url.substring(0, 5) === 'blob:') {
+		return false;
 	}
 
-	return res;
+	var regex = convertListToRegex(settings.get('blacklistsite'));
+	if (regex.test(taburl) || regex.test(url)) {
+		return false;
+	}
+
+	regex = convertListToRegex(settings.get('whitelistsite'));
+	if (regex.test(taburl) || regex.test(url)) {
+		return true;
+	}
+
+	regex = convertListToRegex(settings.get('whitelisttype'));
+	if (regex.test(name)) {
+		return true;
+	}
+
+	if (settings.get('sizecaptureCheckbox')) {
+		var max = settings.get('filesizesetting');
+		var suffixes = ['K', 'M', 'G', 'T'];
+		max = max.match(/[\d.]+/)[0] * Math.pow(1024, suffixes.indexOf(max.match(/[a-zA-Z]+/)[0].toUpperCase()) + 1);
+		if (size >= max) {
+			return true;
+		}
+	}
+
+	return false;
 }
 
 function captureAdd(item, taburl) {
 	"use strict";
-	if (isCapture(item.fileSize, taburl, item.url, item.filename) === 1) {
+
+	var url = item.finalUrl ? item.finalUrl : item.url;
+	var name = item.filename;
+	if (!name) {
+		name = url.split(/[\\/]/).pop();
+	}
+
+	if (validate(item.fileSize, taburl, url, name)) {
 		getCookies(item.url, function (cookies) {
 			var aria2 = new ARIA2(settings.get('rpcpath')),
 				params = {};
@@ -186,10 +191,6 @@ function captureAdd(item, taburl) {
 			params.out = item.filename;
 
 			chrome.downloads.cancel(item.id, function () {
-				var url = item.url;
-				if (url === 'about:blank') {
-					url = item.finalUrl;
-				}
 				if (aria2.addUri(url, params)) {
 					showNotification();
 				}
