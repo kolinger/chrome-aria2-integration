@@ -1,6 +1,6 @@
 {
 	"name": "Aria2c Integration 2.0",
-	"version": "2.0.0",
+	"version": "2.0.1",
 	"manifest_version": 2,
 	"minimum_chrome_version": "54",
 	"description": "Download files with aria2",
