@@ -3,6 +3,8 @@ aria2 integration extension for chrome
 
 Updated aria2 integration for new version of chrome.
 
+https://chrome.google.com/webstore/detail/aria2c-integration-20/nhkaifgoebiidfpmdhmbindnfkpglnem
+
 Features
 --------
 This extension captures new download tasks and sends them to aria2
