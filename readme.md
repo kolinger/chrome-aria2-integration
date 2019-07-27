@@ -17,6 +17,7 @@ progress bar area to pause/unpause a task or remove a completed/error task.
 
 Requirements
 ------------
-aria2c with RPC enabled. RPC user and password/RPC secret can be set in options. Also rpc-listen-all and rpc-allow-origin-all needs to be switched on.
+aria2c with RPC enabled. RPC user and password/RPC secret can be set in options. 
+Also rpc-listen-all and **rpc-allow-origin-all** needs to be switched on.
 
 Example: aria2c --enable-rpc --rpc-listen-all=true --rpc-allow-origin-all=true

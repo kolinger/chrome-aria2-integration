@@ -1,9 +1,9 @@
 {
-	"name": "Aria2c Integration 2.0",
-	"version": "2.0.1",
+	"name": "Aria2c Integration 2",
+	"version": "2.0.2",
 	"manifest_version": 2,
 	"minimum_chrome_version": "54",
-	"description": "Download files with aria2",
+	"description": "Download files with aria2 (updated)",
 	"icons": {
 		"16": "icons/icon16.png",
 		"48": "icons/icon48.png",
@@ -26,8 +26,7 @@
 		"downloads",
 		"notifications",
 		"storage",
-		"cookies",
-		"*://*/"
+		"cookies"
 	],
 	"browser_action": {
 		"default_icon": {
