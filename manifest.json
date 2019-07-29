@@ -26,7 +26,8 @@
 		"downloads",
 		"notifications",
 		"storage",
-		"cookies"
+		"cookies",
+		"<all_urls>"
 	],
 	"browser_action": {
 		"default_icon": {
